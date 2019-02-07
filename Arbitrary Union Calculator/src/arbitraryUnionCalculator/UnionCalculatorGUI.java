@@ -1,6 +1,6 @@
-package arbitraryUnionCalculator;
+/* Written by Leonard Craft III (DaWoblefet) */
 
-/*Written by Leonard Craft III (DaWoblefet)*/
+package arbitraryUnionCalculator;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
