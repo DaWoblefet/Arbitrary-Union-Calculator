@@ -1,9 +1,9 @@
-package arbitraryUnionCalculator;
-
 /* Written by DaWoblefet. The general idea of this class is to represent fractions with
  * large numerators and large denominators. The most important function is
  * calculateArbitraryUnion() which lets the user calculate the union of n sets.
  * Special thanks to DeVon Ingram (dingram) for kick-starting the algorithm idea.*/
+
+package arbitraryUnionCalculator;
 
 import java.math.BigInteger;
 import java.math.BigDecimal;
