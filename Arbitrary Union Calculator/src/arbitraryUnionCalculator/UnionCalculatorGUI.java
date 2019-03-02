@@ -15,7 +15,6 @@ import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
-import java.io.*;
 import java.util.Scanner;
 
 public class UnionCalculatorGUI extends Application
@@ -52,8 +51,8 @@ public class UnionCalculatorGUI extends Application
 			probabilitySetTFs.add(new TextField());
 			probabilitySetTFs.get(i).setPrefWidth(550);
 
-			setInput.setConstraints(probabilitySetLabels.get(i), 0, i);
-			setInput.setConstraints(probabilitySetTFs.get(i), 1, i);
+			GridPane.setConstraints(probabilitySetLabels.get(i), 0, i);
+			GridPane.setConstraints(probabilitySetTFs.get(i), 1, i);
 
 			setInput.getChildren().addAll(probabilitySetLabels.get(i), probabilitySetTFs.get(i));
 		}
@@ -67,7 +66,7 @@ public class UnionCalculatorGUI extends Application
 		addRemoveButtons.addRow(1, addRowButton, removeRowButton);
 		addRemoveButtons.setHgap(5);
 
-		setInput.setConstraints(addRemoveButtons, 0, 2);
+		GridPane.setConstraints(addRemoveButtons, 0, 2);
 		setInput.getChildren().add(addRemoveButtons);
 
 		setInput.setVgap(2);
@@ -77,7 +76,7 @@ public class UnionCalculatorGUI extends Application
 		GridPane results = new GridPane();
 
 		Button calcButton = new Button("Calculate Union");
-		results.setConstraints(calcButton, 0, 0);
+		GridPane.setConstraints(calcButton, 0, 0);
 
 		Label percentLabel = new Label(" Percent of the time:");
 		TextField percentTF = new TextField();
@@ -95,15 +94,15 @@ public class UnionCalculatorGUI extends Application
 		reducedTF.setEditable(false);
 		Button copyReduced = new Button("Copy");
 
-		results.setConstraints(percentLabel, 0, 1);
-		results.setConstraints(percentTF, 1, 1);
-		results.setConstraints(copyPercent, 2, 1);
-		results.setConstraints(rawLabel, 0, 2);
-		results.setConstraints(rawTF, 1, 2);
-		results.setConstraints(copyRaw, 2, 2);
-		results.setConstraints(reducedLabel, 0, 3);
-		results.setConstraints(reducedTF, 1, 3);
-		results.setConstraints(copyReduced, 2, 3);
+		GridPane.setConstraints(percentLabel, 0, 1);
+		GridPane.setConstraints(percentTF, 1, 1);
+		GridPane.setConstraints(copyPercent, 2, 1);
+		GridPane.setConstraints(rawLabel, 0, 2);
+		GridPane.setConstraints(rawTF, 1, 2);
+		GridPane.setConstraints(copyRaw, 2, 2);
+		GridPane.setConstraints(reducedLabel, 0, 3);
+		GridPane.setConstraints(reducedTF, 1, 3);
+		GridPane.setConstraints(copyReduced, 2, 3);
 
 		results.getChildren().addAll(calcButton, percentLabel, percentTF, copyPercent, rawLabel, rawTF, copyRaw, reducedLabel, reducedTF, copyReduced);
 		results.setHgap(5);
@@ -116,9 +115,9 @@ public class UnionCalculatorGUI extends Application
 			int index = probabilitySetTFs.size() - 1;
 			probabilitySetTFs.get(index).setPrefWidth(550);
 
-			setInput.setConstraints(probabilitySetLabels.get(index), 0, index);
-			setInput.setConstraints(probabilitySetTFs.get(index), 1, index);
-			setInput.setConstraints(addRemoveButtons, 0, index + 1);
+			GridPane.setConstraints(probabilitySetLabels.get(index), 0, index);
+			GridPane.setConstraints(probabilitySetTFs.get(index), 1, index);
+			GridPane.setConstraints(addRemoveButtons, 0, index + 1);
 
 			setInput.getChildren().addAll(probabilitySetLabels.get(index), probabilitySetTFs.get(index));
 		});
@@ -132,7 +131,7 @@ public class UnionCalculatorGUI extends Application
 			probabilitySetLabels.remove(index);
 			probabilitySetTFs.remove(index);
 
-			setInput.setConstraints(addRemoveButtons, 0, index);
+			GridPane.setConstraints(addRemoveButtons, 0, index);
 		});
 
 		calcButton.setOnAction(e -> {
@@ -158,7 +157,8 @@ public class UnionCalculatorGUI extends Application
 
 		Scene scene = new Scene(pane, 650, 300);
 		primaryStage.setTitle("Arbitrary Union Calculator");
-		Image icon = new Image("file:.\\resources\\woblescientist.png");
+		//Image icon = new Image("./resources/woblescientist.png");
+		Image icon = new Image(getClass().getResourceAsStream("/resources/woblescientist.png"));
 		primaryStage.getIcons().add(icon);
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -176,7 +176,7 @@ public class UnionCalculatorGUI extends Application
 		String helpTextRaw = "";
 		try
 		{
-			Scanner input = new Scanner(new File(".\\resources\\helptext.txt"));
+			Scanner input = new Scanner((getClass().getResourceAsStream("/resources/helptext.txt")));
 			while (input.hasNextLine())
 			{
 				helpTextRaw += input.nextLine() + "\n";
@@ -215,5 +215,10 @@ public class UnionCalculatorGUI extends Application
 		}
 
 		return initialProb;
+	}
+	
+	public static void main(String[] args)
+	{
+		launch(args);
 	}
 }
